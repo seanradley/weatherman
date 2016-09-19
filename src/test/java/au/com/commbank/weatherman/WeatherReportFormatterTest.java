@@ -24,6 +24,11 @@ public class WeatherReportFormatterTest {
 
         String formattedReport = weatherReportFormatter.format(weatherReport);
         assertEquals("SYD|-33.86,151.21,39|2015-12-23T05:02:12Z|Rain|+12.5|1004.3|97", formattedReport);
+
+
+        weatherReport.setTemperature(-12.5);
+        formattedReport = weatherReportFormatter.format(weatherReport);
+        assertEquals("SYD|-33.86,151.21,39|2015-12-23T05:02:12Z|Rain|-12.5|1004.3|97", formattedReport);
     }
 
 }

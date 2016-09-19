@@ -14,7 +14,7 @@ public class WeatherReportFormatter {
         stringBuffer.append(weatherReport.getDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))).append(SEPARATOR);
         stringBuffer.append(weatherReport.getWeatherConditions()).append(SEPARATOR);
 
-        stringBuffer.append( weatherReport.getTemperature() >= 0 ? "+" : "-");
+        stringBuffer.append( weatherReport.getTemperature() >= 0 ? "+" : "");
         stringBuffer.append(weatherReport.getTemperature()).append(SEPARATOR);
 
         stringBuffer.append(weatherReport.getPressure()).append(SEPARATOR);
