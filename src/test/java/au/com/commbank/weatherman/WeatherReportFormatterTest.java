@@ -12,7 +12,7 @@ public class WeatherReportFormatterTest {
     public void testFormatterOutput() {
         WeatherReportFormatter weatherReportFormatter = new WeatherReportFormatter();
 
-        WeatherReport weatherReport = WeatherReport.createBaseWeatherReport("SYD", -33.86, 151.21, 39, LocalDateTime.of(2015, 12, 23, 5, 2, 12));
+        WeatherReport weatherReport = WeatherReport.createBaseWeatherReport(new WeatherStation("SYD", -33.86, 151.21, 39), LocalDateTime.of(2015, 12, 23, 5, 2, 12));
         weatherReport.setWeatherConditions(WeatherConditions.Rain);
         weatherReport.setTemperature(12.5);
         weatherReport.setHumidity(97);

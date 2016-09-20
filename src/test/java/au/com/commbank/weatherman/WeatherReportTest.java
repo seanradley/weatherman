@@ -9,12 +9,12 @@ import static org.junit.Assert.*;
 public class WeatherReportTest {
     @Test
     public void testCreateBaseWeatherReport() throws Exception {
-        WeatherReport baseWeatherReport = WeatherReport.createBaseWeatherReport("SYD", -33.86, 151.21, 39, LocalDateTime.now());
+        WeatherReport baseWeatherReport = WeatherReport.createBaseWeatherReport(new WeatherStation("SYD", -33.86, 151.21, 39), LocalDateTime.now());
 
-        assertNotNull(baseWeatherReport.getWeatherStationIATACode());
-        assertNotNull(baseWeatherReport.getLatitude());
-        assertNotNull(baseWeatherReport.getLongitude());
-        assertNotNull(baseWeatherReport.getElevation());
+        assertNotNull(baseWeatherReport.getWeatherStation().getWeatherStationIATACode());
+        assertNotNull(baseWeatherReport.getWeatherStation().getLatitude());
+        assertNotNull(baseWeatherReport.getWeatherStation().getLongitude());
+        assertNotNull(baseWeatherReport.getWeatherStation().getElevation());
 
         assertNotNull(baseWeatherReport.getDateTime());
         assertNotNull(baseWeatherReport.getHumidity());
