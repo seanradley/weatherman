@@ -1,5 +1,6 @@
 package au.com.commbank.weatherman;
 
+import au.com.commbank.weatherman.weathermodifiers.DateTimeModifier;
 import au.com.commbank.weatherman.weathermodifiers.LatitudeModifier;
 import au.com.commbank.weatherman.weathermodifiers.WeatherModifier;
 
@@ -14,11 +15,11 @@ public class WeatherReportGenerator {
         this.modifiers = modifiers;
     }
 
-    public List<WeatherReport> generate(List<WeatherStation> stations) {
+    public List<WeatherReport> generate(List<WeatherStation> stations, LocalDateTime dateTime) {
         ArrayList<WeatherReport> weatherReports = new ArrayList<>();
 
         for (WeatherStation station : stations) {
-            WeatherReport report = WeatherReport.createBaseWeatherReport(station, LocalDateTime.now());
+            WeatherReport report = WeatherReport.createBaseWeatherReport(station, dateTime);
             applyModifiers(report);
             weatherReports.add(report);
         }
@@ -35,6 +36,7 @@ public class WeatherReportGenerator {
     public static WeatherReportGenerator createGeneratorWithAllModifiers() {
         ArrayList<WeatherModifier> weatherModifiers = new ArrayList<>();
         weatherModifiers.add(new LatitudeModifier());
+        weatherModifiers.add(new DateTimeModifier());
 
         WeatherReportGenerator generator = new WeatherReportGenerator(weatherModifiers);
         return generator;

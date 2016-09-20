@@ -4,6 +4,9 @@ import au.com.commbank.weatherman.WeatherReport;
 
 public class LatitudeModifier implements WeatherModifier {
 
+    public static final double AVG_TEMP_AT_EQUATOR = 30.0;
+    public static final double ARCTIC_CIRCLE_LATITUDE = 66.56;
+
     @Override
     public void applyModifier(WeatherReport report) {
         modifyTemperature(report);
@@ -11,10 +14,8 @@ public class LatitudeModifier implements WeatherModifier {
     }
 
     private void modifyTemperature(WeatherReport report) {
-        double avgTempAtEquator = 30.0;
-        double arcticCircleLatitude = 66.56;
-        double tempDeltaPerLatitudinalDegree = avgTempAtEquator / arcticCircleLatitude;
-        double avgTempLatitude = arcticCircleLatitude / 2.0;
+        double tempDeltaPerLatitudinalDegree = AVG_TEMP_AT_EQUATOR / ARCTIC_CIRCLE_LATITUDE;
+        double avgTempLatitude = ARCTIC_CIRCLE_LATITUDE / 2.0;
 
         double deltaFromAvgTempLatitude = avgTempLatitude - Math.abs(report.getWeatherStation().getLatitude());
         double temperatureDelta = deltaFromAvgTempLatitude * tempDeltaPerLatitudinalDegree;
