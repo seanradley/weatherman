@@ -1,0 +1,80 @@
+*.log
+*.class
+.jenv
+.java-version
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# log file
+*.log*
+
+#Eclipse project and built files
+*.project
+*.settings
+*.classpath
+*.eml
+*.userlibraries
+build/
+
+#configuration files
+/conf
+/config
+
+#built files
+target
+classes
+*/workflow-service/bin/*
+*/dependency-reduced-pom.xml
+
+
+#Idea files
+.idea
+.idea/*
+*.iml
+atlassian-ide-plugin.xml
+
+#IDEA 12.1 built files
+out
+
+
+#Mac nonsense
+.DS_Store
+
+#subversion indexes
+.svn
+
+#personal db dumps (output of dump_schema/dump_data)  not yet converted to official scripts
+*.sql.txt
+database/dumps/*.sql
+
+#grails built files
+#plugins/ # Jon Beech: removed as this was blocking the js plugins folder flexifin-web\web-app\js\shared\plugins\
+plugin.xml
+
+#Activiti generated files
+*.bpmn2d
+
+#database and repo dumps 
+dumps
+
+
+#personal utilities
+all.sh
+
+# folders used for deployment and server environment
+/thecore-router-2.0.0-b2
+/vmshared
+/deploy
+/pid
+database/dependency-reduced-pom.xml
+
+# python specific files
+*.pyc
+
+
+#.slcache/
+.slcache
+.slcache/*

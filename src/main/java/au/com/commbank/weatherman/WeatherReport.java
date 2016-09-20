@@ -1,17 +1,36 @@
 package au.com.commbank.weatherman;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 public class WeatherReport {
 
     private String weatherStationIATACode;
-    private String weatherStationCoordinates;
+    private double latitude;
+    private double longitude;
     private int elevation;
     private LocalDateTime dateTime;
     private WeatherConditions weatherConditions;
     private double temperature;
-    private double pressure;
     private int humidity;
+
+    private WeatherReport() {
+
+    }
+
+    public static WeatherReport createBaseWeatherReport(String stationIATACode, double latitude, double longitude, int elevation, LocalDateTime dateTime) {
+        WeatherReport baseWeatherReport = new WeatherReport();
+        baseWeatherReport.setWeatherStationIATACode(stationIATACode);
+        baseWeatherReport.setLatitude(latitude);
+        baseWeatherReport.setLongitude(longitude);
+        baseWeatherReport.setElevation(elevation);
+        baseWeatherReport.setDateTime(dateTime);
+        baseWeatherReport.setWeatherConditions(WeatherConditions.Rain);
+        baseWeatherReport.setTemperature(14.6);
+        baseWeatherReport.setHumidity(97);
+
+        return baseWeatherReport;
+    }
 
     public String getWeatherStationIATACode() {
         return weatherStationIATACode;
@@ -21,12 +40,20 @@ public class WeatherReport {
         this.weatherStationIATACode = weatherStationIATACode;
     }
 
-    public String getWeatherStationCoordinates() {
-        return weatherStationCoordinates;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setWeatherStationCoordinates(String weatherStationCoordinates) {
-        this.weatherStationCoordinates = weatherStationCoordinates;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public int getElevation() {
@@ -62,11 +89,14 @@ public class WeatherReport {
     }
 
     public double getPressure() {
-        return pressure;
+        return calculatePressure();
     }
 
-    public void setPressure(double pressure) {
-        this.pressure = pressure;
+    private double calculatePressure() {
+        double pressureInPascal = 101325 * Math.pow(1 - (2.25577 * Math.pow(10, -5)) * getElevation(), 5.25588);
+        double pressureInHectoPascal = pressureInPascal / 100.0;
+        return pressureInHectoPascal;
+
     }
 
     public int getHumidity() {
