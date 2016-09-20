@@ -10,7 +10,7 @@ public class Main {
         WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21, 39);
         stations.add(sydney);
 
-        WeatherReportGenerator generator = new WeatherReportGenerator();
+        WeatherReportGenerator generator = WeatherReportGenerator.createGeneratorWithAllModifiers();
         List<WeatherReport> reports = generator.generate(stations);
 
         ConsoleEmitter consoleEmitter = new ConsoleEmitter();

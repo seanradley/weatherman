@@ -1,10 +1,19 @@
 package au.com.commbank.weatherman;
 
+import au.com.commbank.weatherman.weathermodifiers.LatitudeModifier;
+import au.com.commbank.weatherman.weathermodifiers.WeatherModifier;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherReportGenerator {
+    private List<WeatherModifier> modifiers;
+
+    public WeatherReportGenerator(List<WeatherModifier> modifiers) {
+        this.modifiers = modifiers;
+    }
+
     public List<WeatherReport> generate(List<WeatherStation> stations) {
         ArrayList<WeatherReport> weatherReports = new ArrayList<>();
 
@@ -18,24 +27,16 @@ public class WeatherReportGenerator {
     }
 
     private void applyModifiers(WeatherReport report) {
-        applyLatitudeModifier(report);
+        for (WeatherModifier modifier : modifiers) {
+            modifier.applyModifier(report);
+        }
     }
 
-    private void applyLatitudeModifier(WeatherReport report) {
-        /*
-            30 deg at 0
-            0 deg at 66.53 (Arctic Circle)
-            30 / 66.56 = 0.45
-         */
-        double avgTempAtEquator = 30.0;
-        double arcticCircleLatitude = 66.56;
-        double tempDeltaPerLatitudinalDegree = avgTempAtEquator / arcticCircleLatitude;
-        double avgTempLatitude = arcticCircleLatitude / 2.0;
+    public static WeatherReportGenerator createGeneratorWithAllModifiers() {
+        ArrayList<WeatherModifier> weatherModifiers = new ArrayList<>();
+        weatherModifiers.add(new LatitudeModifier());
 
-        double deltaFromAvgTempLatitude = avgTempLatitude - Math.abs(report.getWeatherStation().getLatitude());
-        double temperatureDelta = deltaFromAvgTempLatitude * tempDeltaPerLatitudinalDegree;
-        report.setTemperature(report.getTemperature() + temperatureDelta);
-
-
+        WeatherReportGenerator generator = new WeatherReportGenerator(weatherModifiers);
+        return generator;
     }
 }

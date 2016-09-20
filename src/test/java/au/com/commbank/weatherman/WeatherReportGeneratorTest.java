@@ -1,9 +1,9 @@
 package au.com.commbank.weatherman;
 
 import static org.junit.Assert.*;
+
 import org.junit.Test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class WeatherReportGeneratorTest {
         WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21, 39);
         stations.add(sydney);
 
-        WeatherReportGenerator weatherReportGenerator = new WeatherReportGenerator();
+        WeatherReportGenerator weatherReportGenerator = WeatherReportGenerator.createGeneratorWithAllModifiers();
         List<WeatherReport> reports = weatherReportGenerator.generate(stations);
 
         assertTrue(1 == reports.size());
@@ -37,14 +37,14 @@ public class WeatherReportGeneratorTest {
         stations.add(capricorn);
         stations.add(cancer);
 
-        WeatherReportGenerator weatherReportGenerator = new WeatherReportGenerator();
+        WeatherReportGenerator weatherReportGenerator = WeatherReportGenerator.createGeneratorWithAllModifiers();
         List<WeatherReport> reports = weatherReportGenerator.generate(stations);
 
-        assertTrue(reports.get(0).getTemperature() <  reports.get(1).getTemperature());
-        assertTrue(reports.get(0).getTemperature() >  reports.get(2).getTemperature());
-        assertTrue(reports.get(0).getTemperature() >  reports.get(3).getTemperature());
-        assertTrue(reports.get(0).getTemperature() <  reports.get(4).getTemperature());
-        assertTrue(reports.get(0).getTemperature() <  reports.get(5).getTemperature());
+        assertTrue(reports.get(0).getTemperature() < reports.get(1).getTemperature());
+        assertTrue(reports.get(0).getTemperature() > reports.get(2).getTemperature());
+        assertTrue(reports.get(0).getTemperature() > reports.get(3).getTemperature());
+        assertTrue(reports.get(0).getTemperature() < reports.get(4).getTemperature());
+        assertTrue(reports.get(0).getTemperature() < reports.get(5).getTemperature());
     }
 
 }
