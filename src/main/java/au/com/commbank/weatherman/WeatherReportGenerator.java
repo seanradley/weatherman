@@ -2,6 +2,7 @@ package au.com.commbank.weatherman;
 
 import au.com.commbank.weatherman.weathermodifiers.DateTimeModifier;
 import au.com.commbank.weatherman.weathermodifiers.LatitudeModifier;
+import au.com.commbank.weatherman.weathermodifiers.RandomisedModifier;
 import au.com.commbank.weatherman.weathermodifiers.WeatherModifier;
 
 import java.time.LocalDateTime;
@@ -52,6 +53,7 @@ public class WeatherReportGenerator {
         ArrayList<WeatherModifier> weatherModifiers = new ArrayList<>();
         weatherModifiers.add(new LatitudeModifier());
         weatherModifiers.add(new DateTimeModifier());
+        weatherModifiers.add(new RandomisedModifier());
 
         WeatherReportGenerator generator = new WeatherReportGenerator(weatherModifiers);
         return generator;

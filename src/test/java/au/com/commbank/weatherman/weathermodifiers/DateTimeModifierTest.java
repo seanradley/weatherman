@@ -3,6 +3,7 @@ package au.com.commbank.weatherman.weathermodifiers;
 import au.com.commbank.weatherman.WeatherReport;
 import au.com.commbank.weatherman.WeatherReportGenerator;
 import au.com.commbank.weatherman.WeatherStation;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -13,13 +14,21 @@ import static org.junit.Assert.assertTrue;
 
 public class DateTimeModifierTest {
 
+    private WeatherReportGenerator weatherReportGenerator;
+
+    @Before
+    public void setUp() throws Exception {
+        ArrayList<WeatherModifier> weatherModifiers = new ArrayList<>();
+        weatherModifiers.add(new DateTimeModifier());
+        weatherReportGenerator = new WeatherReportGenerator(weatherModifiers);
+    }
+
     @Test
     public void testTimeOfDayTemperatureModifier() throws Exception {
         ArrayList<WeatherStation> stations = new ArrayList<>();
         WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21);
         stations.add(sydney);
 
-        WeatherReportGenerator weatherReportGenerator = WeatherReportGenerator.createGeneratorWithAllModifiers();
         WeatherReport report1540 = weatherReportGenerator.generate(stations, LocalDateTime.of(2016, 9, 20, 15, 40)).get(0);
         WeatherReport report1550 = weatherReportGenerator.generate(stations, LocalDateTime.of(2016, 9, 20, 15, 50)).get(0);
         WeatherReport report16 = weatherReportGenerator.generate(stations, LocalDateTime.of(2016, 9, 20, 16, 0)).get(0);
@@ -51,7 +60,6 @@ public class DateTimeModifierTest {
         stations.add(sydney);
         stations.add(moscow);
 
-        WeatherReportGenerator weatherReportGenerator = WeatherReportGenerator.createGeneratorWithAllModifiers();
         List<WeatherReport> preJunSolstice = weatherReportGenerator.generate(stations,     LocalDateTime.of(2016, 5, 21, 15, 40));
         List<WeatherReport> junSolstice = weatherReportGenerator.generate(stations,        LocalDateTime.of(2016, 6, 21, 15, 40));
         List<WeatherReport> postJunSolstice = weatherReportGenerator.generate(stations,    LocalDateTime.of(2016, 7, 21, 15, 40));

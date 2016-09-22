@@ -29,7 +29,10 @@ public class LatitudeModifierTest {
         stations.add(capricorn);
         stations.add(cancer);
 
-        WeatherReportGenerator weatherReportGenerator = WeatherReportGenerator.createGeneratorWithAllModifiers();
+        ArrayList<WeatherModifier> weatherModifiers = new ArrayList<>();
+        weatherModifiers.add(new LatitudeModifier());
+        WeatherReportGenerator weatherReportGenerator = new WeatherReportGenerator(weatherModifiers);
+
         List<WeatherReport> reports = weatherReportGenerator.generate(stations, LocalDateTime.now());
 
         assertTrue(reports.get(0).getTemperature() < reports.get(1).getTemperature());

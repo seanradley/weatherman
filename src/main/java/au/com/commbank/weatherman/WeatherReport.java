@@ -1,6 +1,5 @@
 package au.com.commbank.weatherman;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +33,9 @@ public class WeatherReport {
         WeatherReport baseWeatherReport = new WeatherReport();
         baseWeatherReport.setWeatherStation(weatherStation);
         baseWeatherReport.setDateTime(dateTime);
-        baseWeatherReport.setWeatherConditions(WeatherConditions.Rain);
+        baseWeatherReport.setWeatherConditions(WeatherConditions.Sun);
         baseWeatherReport.setTemperature(14.6);
-        baseWeatherReport.setHumidity(97);
+        baseWeatherReport.setHumidity(85);
 
         baseWeatherReport.getWeatherStation().setElevation(heightMapReader.getElevation(weatherStation));
         return baseWeatherReport;
