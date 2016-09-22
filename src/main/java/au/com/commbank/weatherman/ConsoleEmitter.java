@@ -9,4 +9,8 @@ public class ConsoleEmitter {
             System.out.println(weatherReportFormatter.format(report));
         }
     }
+
+    public void emitError(String message) {
+        System.out.println("An error occurred: " + message);
+    }
 }

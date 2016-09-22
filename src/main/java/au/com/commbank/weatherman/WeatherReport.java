@@ -1,6 +1,9 @@
 package au.com.commbank.weatherman;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WeatherReport {
 
@@ -14,7 +17,20 @@ public class WeatherReport {
 
     }
 
-    public static WeatherReport createBaseWeatherReport(WeatherStation weatherStation, LocalDateTime dateTime) {
+    public static List<WeatherReport> createBaseWeatherReports(List<WeatherStation> weatherStations, LocalDateTime dateTime) {
+        List<WeatherReport> baseWeatherReports = new ArrayList<>();
+
+        HeightMapReader heightMapReader = new HeightMapReader();
+        for (WeatherStation weatherStation : weatherStations) {
+            WeatherReport baseWeatherReport = createBaseWeatherReport(weatherStation, dateTime, heightMapReader);
+
+            baseWeatherReports.add(baseWeatherReport);
+        }
+
+        return baseWeatherReports;
+    }
+
+    public static WeatherReport createBaseWeatherReport(WeatherStation weatherStation, LocalDateTime dateTime, HeightMapReader heightMapReader) {
         WeatherReport baseWeatherReport = new WeatherReport();
         baseWeatherReport.setWeatherStation(weatherStation);
         baseWeatherReport.setDateTime(dateTime);
@@ -22,6 +38,7 @@ public class WeatherReport {
         baseWeatherReport.setTemperature(14.6);
         baseWeatherReport.setHumidity(97);
 
+        baseWeatherReport.getWeatherStation().setElevation(heightMapReader.getElevation(weatherStation));
         return baseWeatherReport;
     }
 

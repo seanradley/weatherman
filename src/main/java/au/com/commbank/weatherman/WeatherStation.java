@@ -7,11 +7,10 @@ public class WeatherStation {
     private double longitude;
     private int elevation;
 
-    public WeatherStation(String weatherStationIATACode, double latitude, double longitude, int elevation) {
+    public WeatherStation(String weatherStationIATACode, double latitude, double longitude) {
         this.weatherStationIATACode = weatherStationIATACode;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.elevation = elevation;
     }
 
     public String getWeatherStationIATACode() {

@@ -16,12 +16,12 @@ public class LatitudeModifierTest {
     @Test
     public void testLatitudeTemperatureModifier() throws Exception {
         ArrayList<WeatherStation> stations = new ArrayList<>();
-        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21, 39);
-        WeatherStation equator = new WeatherStation("SYD", 0, 151.21, 39);
-        WeatherStation northPole = new WeatherStation("SYD", 90, 151.21, 39);
-        WeatherStation arcticCircle = new WeatherStation("SYD", 66.53, 151.21, 39);
-        WeatherStation capricorn = new WeatherStation("SYD", -23.43712, 151.21, 39);
-        WeatherStation cancer = new WeatherStation("SYD", -23.43712, 151.21, 39);
+        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21);
+        WeatherStation equator = new WeatherStation("SYD", 0, 151.21);
+        WeatherStation northPole = new WeatherStation("SYD", 90, 151.21);
+        WeatherStation arcticCircle = new WeatherStation("SYD", 66.53, 151.21);
+        WeatherStation capricorn = new WeatherStation("SYD", -23.43712, 151.21);
+        WeatherStation cancer = new WeatherStation("SYD", -23.43712, 151.21);
         stations.add(sydney);
         stations.add(equator);
         stations.add(northPole);

@@ -13,7 +13,7 @@ public class WeatherReportGeneratorTest {
     @Test
     public void testGenerate() throws Exception {
         ArrayList<WeatherStation> stations = new ArrayList<>();
-        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21, 39);
+        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21);
         stations.add(sydney);
 
         WeatherReportGenerator weatherReportGenerator = WeatherReportGenerator.createGeneratorWithAllModifiers();

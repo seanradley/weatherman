@@ -5,12 +5,10 @@ import au.com.commbank.weatherman.WeatherReportGenerator;
 import au.com.commbank.weatherman.WeatherStation;
 import org.junit.Test;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.time.temporal.ChronoUnit.DAYS;
 import static org.junit.Assert.assertTrue;
 
 public class DateTimeModifierTest {
@@ -18,7 +16,7 @@ public class DateTimeModifierTest {
     @Test
     public void testTimeOfDayTemperatureModifier() throws Exception {
         ArrayList<WeatherStation> stations = new ArrayList<>();
-        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21, 39);
+        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21);
         stations.add(sydney);
 
         WeatherReportGenerator weatherReportGenerator = WeatherReportGenerator.createGeneratorWithAllModifiers();
@@ -48,8 +46,8 @@ public class DateTimeModifierTest {
     @Test
     public void testSeasonalTemperatureModifier() throws Exception {
         ArrayList<WeatherStation> stations = new ArrayList<>();
-        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21, 39);
-        WeatherStation moscow = new WeatherStation("DME", 55.408611, 37.906111, 156);
+        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21);
+        WeatherStation moscow = new WeatherStation("DME", 55.408611, 37.906111);
         stations.add(sydney);
         stations.add(moscow);
 
