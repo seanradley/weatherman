@@ -5,10 +5,12 @@ import au.com.commbank.weatherman.WeatherReportGenerator;
 import au.com.commbank.weatherman.WeatherStation;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static org.junit.Assert.assertTrue;
 
 public class DateTimeModifierTest {
@@ -43,4 +45,30 @@ public class DateTimeModifierTest {
         assertTrue(report410.getTemperature() < report420.getTemperature());
     }
 
+    @Test
+    public void testSeasonalTemperatureModifier() throws Exception {
+        ArrayList<WeatherStation> stations = new ArrayList<>();
+        WeatherStation sydney = new WeatherStation("SYD", -33.86, 151.21, 39);
+        WeatherStation moscow = new WeatherStation("DME", 55.408611, 37.906111, 156);
+        stations.add(sydney);
+        stations.add(moscow);
+
+        WeatherReportGenerator weatherReportGenerator = WeatherReportGenerator.createGeneratorWithAllModifiers();
+        List<WeatherReport> preJunSolstice = weatherReportGenerator.generate(stations,     LocalDateTime.of(2016, 5, 21, 15, 40));
+        List<WeatherReport> junSolstice = weatherReportGenerator.generate(stations,        LocalDateTime.of(2016, 6, 21, 15, 40));
+        List<WeatherReport> postJunSolstice = weatherReportGenerator.generate(stations,    LocalDateTime.of(2016, 7, 21, 15, 40));
+        List<WeatherReport> preDecSolstice = weatherReportGenerator.generate(stations,     LocalDateTime.of(2016, 11, 22, 15, 40));
+        List<WeatherReport> decSolstice = weatherReportGenerator.generate(stations,        LocalDateTime.of(2016, 12, 22, 15, 40));
+        List<WeatherReport> postDecSolstice = weatherReportGenerator.generate(stations,    LocalDateTime.of(2017, 1, 22, 15, 40));
+
+        assertTrue(junSolstice.get(0).getTemperature() < preJunSolstice.get(0).getTemperature());
+        assertTrue(junSolstice.get(0).getTemperature() < postJunSolstice.get(0).getTemperature());
+        assertTrue(decSolstice.get(0).getTemperature() > preDecSolstice.get(0).getTemperature());
+        assertTrue(decSolstice.get(0).getTemperature() > postDecSolstice.get(0).getTemperature());
+
+        assertTrue(junSolstice.get(1).getTemperature() > preJunSolstice.get(1).getTemperature());
+        assertTrue(junSolstice.get(1).getTemperature() > postJunSolstice.get(1).getTemperature());
+        assertTrue(decSolstice.get(1).getTemperature() < preDecSolstice.get(1).getTemperature());
+        assertTrue(decSolstice.get(1).getTemperature() < postDecSolstice.get(1).getTemperature());
+    }
 }
