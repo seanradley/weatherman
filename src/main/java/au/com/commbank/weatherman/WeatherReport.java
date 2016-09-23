@@ -35,7 +35,7 @@ public class WeatherReport {
         baseWeatherReport.setDateTime(dateTime);
         baseWeatherReport.setWeatherConditions(WeatherConditions.Sun);
         baseWeatherReport.setTemperature(14.6);
-        baseWeatherReport.setHumidity(85);
+        baseWeatherReport.setHumidity(75);
 
         baseWeatherReport.getWeatherStation().setElevation(heightMapReader.getElevation(weatherStation));
         return baseWeatherReport;

@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class HeightMapReader {
 
@@ -39,10 +40,9 @@ public class HeightMapReader {
     }
 
     private BufferedImage readImage(String imageFileName) throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File imageFile = new File(classLoader.getResource(imageFileName).getFile());
+        InputStream inputStream = this.getClass().getResourceAsStream("/" + imageFileName);
 
-        BufferedImage image = ImageIO.read(imageFile);
+        BufferedImage image = ImageIO.read(inputStream);
 
         return image;
     }
